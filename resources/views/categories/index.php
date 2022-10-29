@@ -7,6 +7,6 @@ include_once resource_path("/views/menu.php"); ?>
 </div>
 
 <?php foreach ($data as $item): ?>
-    <a href="/categories/<?php echo $item['id']?>">Категория <?php echo $item['name'] ?></a> <br/>
+    <a href="<?=route('news.category', $item['id'])?>">Категория <?php echo $item['name'] ?></a> <br/>
 <?php endforeach; ?>
 
