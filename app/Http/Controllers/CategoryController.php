@@ -4,24 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\News;
+
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Categories $category)
     {
-        $category = Categories::getCategories();
-
         return view('categories.index', [
-            'data' => $category
+            'data' => $category->getCategories()
         ]);
     }
 
-    public function show($id)
+    public function show($id, Categories $category, News $news)
     {
-
-        $category = Categories::getNewsByCategory($id);
         return view('news.index', [
-            'news' => $category
+            'news' => $category->getNewsByCategory($id, $news)
         ]);
     }
 }

@@ -7,17 +7,15 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(News $news)
     {
-        $news = News::getNews();
-        return view('news.index')->with('news', $news);
+        return view('news.index')->with('news', $news->getNews());
     }
 
-    public function show(int $id)
+    public function show(int $id, News $news)
     {
-        $news = News::getNewsById($id);
         return view('news.show', [
-            'news' => $news
+            'news' => $news->getNewsById($id)
         ]);
     }
     public function add()

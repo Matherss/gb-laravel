@@ -40,3 +40,6 @@ Route::name('auth.')
     });
 
 Route::redirect('redirect', '/', 301);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

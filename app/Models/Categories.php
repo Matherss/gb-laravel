@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\News;
 
 class Categories
 {
-    private static $categories = [
+    private array $categories = [
         [
             'id' => 1,
             'name' => 'Спорт',
@@ -28,21 +27,18 @@ class Categories
             'name' => 'Музыка',
         ],
     ];
-    public static function getCategories() {
-        return static::$categories;
+    public function getCategories() {
+        return $this->categories;
     }
-    public static function getNewsByCategory($id): ?array {
+    public function getNewsByCategory($id, $news): ?array {
         
-        $allNews = News::getNews();
         $data = [];
 
-        foreach ($allNews as $item) {
+        foreach ($news->getNews() as $item) {
             if($item['category'] == $id)
             $data[] = $item;
         }
         return $data;
-
         
-        return null;
     }
 }

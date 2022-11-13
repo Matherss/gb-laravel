@@ -4,7 +4,7 @@ namespace App\Models;
 
 class News
 {
-    private static $news = [
+    private array $news = [
         1 => [
             'id' => 1,
             'title' => 'Даниил Медведев одержал уверенную победу на старте турнира в Вене',
@@ -26,10 +26,14 @@ class News
             'category' => 2
         ]
         ];
-        public static function getNews(): array {
-            return static::$news;
+        public function getNews(): array {
+            return $this->news;
         }
-        public static function getNewsById($id): ?array {
-            return static::$news[$id];
+        public function getNewsById($id): ?array {
+
+            if(array_key_exists($id, $this->getNews())) {
+                return $this->news[$id];
+            }
+            return null;
         }
 }
